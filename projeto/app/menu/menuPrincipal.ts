@@ -1,5 +1,6 @@
-import  TerminalUtil  from "../../util/TerminalUtil";
+import  TerminalUtil  from "../util/TerminalUtil";
 import { terminal } from "terminal-kit";
+import menuFundamentos from "./menuFundamentos";
 
 export default async function menuPrincipal() {
     TerminalUtil.titulo('Menu Principal');
@@ -11,10 +12,6 @@ export default async function menuPrincipal() {
         ]).promise;
     switch (resposta.selectedIndex) {
         case 0:
-            const menuFundamentos = async () => {
-                TerminalUtil.titulo('Menu Fundamentos');
-                // Adicione as opções do menu de fundamentos aqui
-            };
             await menuFundamentos();
             break;
         case 1:
