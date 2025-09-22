@@ -1,3 +1,3 @@
-import menuPrincipal from "app/menu/menuPrincipal";
+import menuPrincipal from "./app/menu/menuPrincipal";
 
 menuPrincipal();

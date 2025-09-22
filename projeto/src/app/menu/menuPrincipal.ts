@@ -1,5 +1,4 @@
 import  TerminalUtil  from "../util/TerminalUtil";
-import { terminal } from "terminal-kit";
 import menuFundamentos from "./menuFundamentos";
 import menuUsuario from "./menuUsuario";
 

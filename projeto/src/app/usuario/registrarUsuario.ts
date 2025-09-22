@@ -1,8 +1,8 @@
-import TerminalUtil from "app/util/TerminalUtil";
+import TerminalUtil from "@/app/util/TerminalUtil";
 import RegistrarUsuario from '../../core/usuario/service/RegistrarUsuario';
-import Usuario from "core/usuario/model/Usuario";
-import SenhaCripto from "core/adapters/auth/SenhaCripto";
-import RepositorioUsuarioEmMemoria from "core/adapters/mock/RepositorioUsuarioEmMemoria";
+import Usuario from "@/core/usuario/model/Usuario";
+import RepositorioUsuarioEmMemoria from "@/adapters/mock/RepositorioUsuarioEmMemoria";
+import SenhaCripto from "@/adapters/auth/SenhaCripto";
 
 export default async function registrarUsuario() {
     TerminalUtil.titulo("Registrar Usuario");

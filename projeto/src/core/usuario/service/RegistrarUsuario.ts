@@ -1,7 +1,7 @@
-import CasoDeUso from "core/shared/CasoDeUso";
+import CasoDeUso from "@/core/shared/CasoDeUso";
 import Usuario from "../model/Usuario";
-import Erros from "core/shared/Erros";
-import Id from "core/shared/Id";
+import Erros from "@/core/shared/Erros";
+import Id from "@/core/shared/Id";
 import ProvedorCriptografia from "./ProvedorCriptografia";
 import RepositorioUsuario from "./RepositorioUsuario";
 

@@ -1,5 +1,5 @@
-import TerminalUtil from "app/util/TerminalUtil";
-import RegistrarUsuario from "app/usuario/registrarUsuario";
+import TerminalUtil from "../util/TerminalUtil";
+import RegistrarUsuario from "../usuario/registrarUsuario";
 
 export default async function menuUsuario() {
     TerminalUtil.titulo("Usuario");

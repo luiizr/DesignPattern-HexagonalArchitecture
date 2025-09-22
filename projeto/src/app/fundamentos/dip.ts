@@ -1,8 +1,8 @@
-import TerminalUtil from "app/util/TerminalUtil";
-import corrida from "core/fundamentos/corrida";
-import Fusca from "core/fundamentos/Fusca";
-import Ferrari from 'core/fundamentos/Ferrari';
-import Civic from 'core/fundamentos/Civic'
+import TerminalUtil from "@/app/util/TerminalUtil";
+import corrida from "@/core/fundamentos/corrida";
+import Fusca from "@/core/fundamentos/Fusca";
+import Ferrari from '@/core/fundamentos/Ferrari';
+import Civic from '@/core/fundamentos/Civic'
 import { terminal } from "terminal-kit";
 
 

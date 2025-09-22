@@ -1,7 +1,7 @@
-import TerminalUtil from "app/util/TerminalUtil";
+import TerminalUtil from "../util/TerminalUtil";
 import menuPrincipal from "./menuPrincipal";
-import polimorfismo from "app/fundamentos/polimorfismo";
-import dip from "app/fundamentos/dip";
+import polimorfismo from "../fundamentos/polimorfismo";
+import dip from "../fundamentos/dip";
 
 export default async function menuFundamentos() {
     TerminalUtil.titulo("Fundamentos");
