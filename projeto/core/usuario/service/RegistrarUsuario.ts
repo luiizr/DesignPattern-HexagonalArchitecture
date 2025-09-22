@@ -1,18 +1,35 @@
 import CasoDeUso from "core/shared/CasoDeUso";
 import Usuario from "../model/Usuario";
-import RepositorioUsuarioEmMemoria from "./RepositorioUsuarioEmMemoria";
+import Erros from "core/shared/Erros";
+import Id from "core/shared/Id";
+import ProvedorCriptografia from "./ProvedorCriptografia";
+import RepositorioUsuario from "./RepositorioUsuario";
 
 export default class RegistrarUsuario implements CasoDeUso<Usuario, void>{
+    constructor(
+        private repoUsuario: RepositorioUsuario,
+        private provedorCripto: ProvedorCriptografia
+    ){}
+    
     async executar(usuario: Usuario): Promise<void> {
-        const senhaCripto = usuario.senha.split('').reverse().join('')
-        console.log(`\nSenha 'criptografada': ${senhaCripto}`)
 
-        const repo = new RepositorioUsuarioEmMemoria()
-        const usuarioExistente = await repo.buscarPorEmail(usuario.email)
+
+        const senhaCripto = this.provedorCripto.criptografar(usuario.senha)
+
+        const usuarioExistente = await this.repoUsuario.buscarPorEmail(usuario.email)
         if (usuarioExistente) {
-            throw new Error(`Usuário com email ${usuario.email} já existe.`)
+            throw new Error(Erros.USUARIO_JA_EXISTE)
         }
-        await repo.inserir({...usuario, senha: senhaCripto})
+
+        const novoUsuario: Usuario = {
+            id: Id.gerarIdHash(),
+            nome: usuario.nome,
+            email: usuario.email,
+            senha: senhaCripto 
+        }  
+
+        await this.repoUsuario.inserir({...novoUsuario, senha: senhaCripto})
+        console.log(`${JSON.stringify(novoUsuario)}`)
     }
 
 }

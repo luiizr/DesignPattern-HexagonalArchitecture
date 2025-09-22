@@ -1,6 +1,7 @@
-import Usuario from "../model/Usuario";
+import RepositorioUsuario from "core/usuario/service/RepositorioUsuario";
+import Usuario from "../../usuario/model/Usuario";
 
-export default class RepositorioUsuarioEmMemoria {
+export default class RepositorioUsuarioEmMemoria implements RepositorioUsuario{
     private static readonly items: Usuario[] = []
     
     async inserir(usuario: Usuario): Promise<void> {
@@ -17,12 +18,5 @@ export default class RepositorioUsuarioEmMemoria {
         return usuario || null
     }
 
-    async buscarPorId(id: string): Promise<Usuario | null> {
-        const usuario = RepositorioUsuarioEmMemoria.items.find(u => u.id === id)
-        return usuario || null
-    }
-
-    async listar(): Promise<Usuario[]> {
-        return RepositorioUsuarioEmMemoria.items
-    }
+     
 }

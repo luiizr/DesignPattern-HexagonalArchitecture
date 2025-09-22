@@ -47,12 +47,12 @@ export default class TerminalUtil {
     return TerminalUtil.campoRequerido(label)
   }
 
-  static async sucesso(texto: string) {
-    terminal.green(`${texto}`)
+  static async sucesso(texto: string, novaLinha: boolean = true) {
+    terminal.green(novaLinha ? `\n ${texto}` : `${texto}`)
   }
 
-  static async deuErro(texto: string) {
-    terminal.red(`${texto}`)
+  static async deuErro(texto: string, novaLinha: boolean = true) {
+    terminal.red(novaLinha ? `\n ${texto}` : `${texto}`)
   }
 
 }
