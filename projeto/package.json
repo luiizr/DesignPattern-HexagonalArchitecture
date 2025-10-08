@@ -9,7 +9,7 @@
         "test": "jest"
     },
     "keywords": [],
-    "author": "Leonardo Moura Leitão",
+    "author": "Luiz Roberto",
     "license": "ISC",
     "devDependencies": {
         "@types/bcrypt": "^6.0.0",
