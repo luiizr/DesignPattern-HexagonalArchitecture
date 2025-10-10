@@ -61,3 +61,6 @@ new RegistrarUsuarioController(app, registrarUsuario)
 
 // A função (rota) de logar usuário é uma interface Controller que pede obrigatoriamente um adaptador de serviços, nesse caso, o app (um serviço de servidor Express) e o loginUsuario (um serviço de caso de uso do core)
 new LoginUsuarioController(app, loginUsuario)
+
+
+

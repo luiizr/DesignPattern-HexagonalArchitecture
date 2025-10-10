@@ -9,19 +9,14 @@ export type LoginArgs = {
     senha: string
 }
 
-export type saidaLoginJWT = {
-    usuario: Usuario,
-    token: string
-}
-
-export default class LoginUsuario implements CasoDeUso<LoginArgs, saidaLoginJWT> {
+export default class LoginUsuario implements CasoDeUso<LoginArgs, Usuario> {
     
     constructor(
         private readonly repo: RepositorioUsuario,
         private provedorCripto: ProvedorCriptografia
     ){}
 
-    async executar(entrada: LoginArgs): Promise<saidaLoginJWT> {
+    async executar(entrada: LoginArgs): Promise<Usuario> {
         const usuarioExistente = await this.repo.buscarPorEmail(entrada.email)
         if(!usuarioExistente) {
             throw new Error(Erros.UsuarioJaExiste)
@@ -31,8 +26,7 @@ export default class LoginUsuario implements CasoDeUso<LoginArgs, saidaLoginJWT>
             throw new Error(Erros.senhaErrada)
         }
         return {
-            usuario: {...usuarioExistente, senha: undefined},
-            token: ''
+            ...usuarioExistente, senha: undefined
         }
     }
 
