@@ -7,6 +7,8 @@ import RegistrarUsuario from "./core/usuario/service/RegistrarUsuario";
 import RepositorioUsuarioPG from "./external/db/RepositorioUsuarioPG";
 import SenhaCripto from "./external/auth/SenhaCripto";
 import RegistrarUsuarioController from "./external/API/RegistrarUsuarioController";
+import LoginUsuarioController from "./external/API/LoginUsuarioController";
+import LoginUsuario from "./core/usuario/service/LoginUsuario";
 
 const app = express();
 const porta = process.env.API_PORT || 4000;
@@ -19,7 +21,7 @@ app.listen(porta, () => {
 db.connect()
     .then((connection) => {
         console.log("✅ Conectado ao banco de dados PostgreSQL com sucesso!");
-        console.log(`📊 Banco: ${process.env.DB_NAME} | Host: ${process.env.DB_HOST}:${process.env.DB_PORT}`);
+        console.log(`📊 Banco: ${process.env.DB_NAME} | Host: ${process.env.DB_HOST}:${process.env.DB_PORT} \n`);
         connection.done(); // Libera a conexão de volta para o pool
     })
     .catch((error) => {
@@ -29,18 +31,33 @@ db.connect()
         console.error("  - O PostgreSQL está rodando");
         console.error("  - As credenciais no .env estão corretas");
         console.error("  - O banco de dados existe");
+        console.error(" === Após aplicar as modificações, reinicie o projeto! === ");
     });
+
+
 
 
 /*
 =========================== 
-      Rotas Abertas
+       Adaptadores
 =========================== 
 */
+// Instanciando os adaptadores de RegistrarUsuárioController(Servidor e caso de uso), o caso de uso pede um repositório e um provedor de criptografia
 const repoUsuario = new RepositorioUsuarioPG()
 const provCripto = new SenhaCripto()
 const registrarUsuario = new RegistrarUsuario(repoUsuario, provCripto)
 
+const loginUsuario = new LoginUsuario(repoUsuario, provCripto)
+
+
+
+/*
+============================ 
+       Rotas Abertas
+============================
+*/
+// A função (rota) de registrar usuário é uma interface Controller que pede obrigatoriamente um adaptador de serviços, nesse caso, o app (um serviço de servidor Express) e o registrarUsuario (um serviço de caso de uso do core)
 new RegistrarUsuarioController(app, registrarUsuario)
 
-export const somar = (a: number, b: number): number => a + b
+// A função (rota) de logar usuário é uma interface Controller que pede obrigatoriamente um adaptador de serviços, nesse caso, o app (um serviço de servidor Express) e o loginUsuario (um serviço de caso de uso do core)
+new LoginUsuarioController(app, loginUsuario)

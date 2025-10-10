@@ -1,5 +1,7 @@
 const Erros = {
-    USUARIO_JA_EXISTE: 'USUARIO_JA_EXISTE'
+    UsuarioJaExiste: "Usuário já existente!",
+    usuarioNaoExiste: "Usuário não existente!",
+    senhaErrada: "Senha não coinscide",
 } as const
 
 export default Erros
