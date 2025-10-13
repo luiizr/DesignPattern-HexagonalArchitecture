@@ -10,19 +10,17 @@ export default class LoginUsuarioController {
         servidor: Express,
         cdu: LoginUsuario
     ) {
-        const provedorJwt = new ProvedorJwt(process.env.JWT_SECRET!)
         
         // Cria a rota para registrar o usuário // requisição e resposta
         servidor.post('/api/usuarios/login', async (req, resp) => { 
             try {
-            const resposta = await cdu.executar({ // resposta = usuário
-                email: req.body.email,
-                senha: req.body.senha,
-            })
-                resp.status(200).send({
-                    resposta,
-                    token: provedorJwt.gerar(resposta)
-            })
+                const resposta = await cdu.executar({ // resposta = usuário
+                    email: req.body.email,
+                    senha: req.body.senha,
+                })
+                const provedorJwt = new ProvedorJwt(process.env.JWT_SECRET!)
+                
+                resp.status(200).send(provedorJwt.gerar(resposta))
             } catch (erro: any) {
                 // Erro 400, quando há algum erro do lado do usuário, enviou dados inválidos por exemplo
                 resp.status(400).send(erro.message)
